@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staff Party Attendance</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header .emoji {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .header h1 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      color: #718096;
+      font-size: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 28px;
+    }
+
+    label.question {
+      display: block;
+      font-weight: 600;
+      color: #2d3748;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .options {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .options input[type="radio"] {
+      display: none;
+    }
+
+    .options label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      color: #4a5568;
+      transition: all 0.15s ease;
+      user-select: none;
+      background: #f7fafc;
+    }
+
+    .options label:hover {
+      border-color: #667eea;
+      color: #667eea;
+      background: #ebf4ff;
+    }
+
+    .options input[type="radio"]:checked + label {
+      border-color: #667eea;
+      background: #667eea;
+      color: #ffffff;
+    }
+
+    .options input[type="radio"]:checked + label .dot {
+      background: #ffffff;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 2px solid currentColor;
+      flex-shrink: 0;
+    }
+
+    textarea {
+      width: 100%;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #2d3748;
+      resize: vertical;
+      min-height: 100px;
+      transition: border-color 0.15s ease;
+      background: #f7fafc;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      background: #ffffff;
+    }
+
+    textarea::placeholder {
+      color: #a0aec0;
+    }
+
+    .name-input {
+      width: 100%;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #2d3748;
+      transition: border-color 0.15s ease;
+      background: #f7fafc;
+    }
+
+    .name-input:focus {
+      outline: none;
+      border-color: #667eea;
+      background: #ffffff;
+    }
+
+    .name-input::placeholder {
+      color: #a0aec0;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #e2e8f0;
+      margin: 32px 0;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: #667eea;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.1s ease;
+      letter-spacing: 0.3px;
+    }
+
+    button[type="submit"]:hover {
+      background: #5a67d8;
+    }
+
+    button[type="submit"]:active {
+      transform: scale(0.98);
+    }
+
+    .success {
+      display: none;
+      text-align: center;
+      padding: 32px 0 8px;
+    }
+
+    .success .checkmark {
+      font-size: 56px;
+      margin-bottom: 16px;
+    }
+
+    .success h2 {
+      font-size: 22px;
+      color: #2d3748;
+      margin-bottom: 8px;
+    }
+
+    .success p {
+      color: #718096;
+      font-size: 15px;
+    }
+
+    .error-msg {
+      font-size: 13px;
+      color: #e53e3e;
+      margin-top: 8px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="header">
+      <div class="emoji">🎉</div>
+      <h1>Staff Party Attendance</h1>
+      <p>Let us know if you can make it!</p>
+    </div>
+
+    <form id="attendanceForm" action="https://formspree.io/f/mrerlyvp" method="POST" novalidate>
+
+      <div class="form-group">
+        <label class="question" for="name">Your Name</label>
+        <input class="name-input" type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <div class="error-msg" id="nameError">Please enter your name.</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-group">
+        <label class="question">Can you attend Office Drinks?</label>
+        <div class="options">
+          <input type="radio" name="officeDrinks" id="od-yes" value="yes">
+          <label for="od-yes"><span class="dot"></span> Yes</label>
+
+          <input type="radio" name="officeDrinks" id="od-no" value="no">
+          <label for="od-no"><span class="dot"></span> No</label>
+        </div>
+        <div class="error-msg" id="officeDrinksError">Please select an option.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="question">Can you attend Drinks at 5pm?</label>
+        <div class="options">
+          <input type="radio" name="drinks5pm" id="d5-yes" value="yes">
+          <label for="d5-yes"><span class="dot"></span> Yes</label>
+
+          <input type="radio" name="drinks5pm" id="d5-no" value="no">
+          <label for="d5-no"><span class="dot"></span> No</label>
+
+          <input type="radio" name="drinks5pm" id="d5-notsure" value="not sure yet">
+          <label for="d5-notsure"><span class="dot"></span> Not sure yet</label>
+        </div>
+        <div class="error-msg" id="drinks5pmError">Please select an option.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="question" for="comments">Any comments?</label>
+        <textarea id="comments" name="comments" placeholder="Dietary requirements, queries, or anything else..."></textarea>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <div class="success" id="successMsg">
+      <div class="checkmark">✅</div>
+      <h2>Thanks for responding!</h2>
+      <p>Your attendance has been recorded. See you there!</p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('attendanceForm');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      let valid = true;
+
+      // Validate name
+      const name = document.getElementById('name').value.trim();
+      const nameError = document.getElementById('nameError');
+      if (!name) {
+        nameError.style.display = 'block';
+        valid = false;
+      } else {
+        nameError.style.display = 'none';
+      }
+
+      // Validate office drinks
+      const officeDrinks = form.querySelector('input[name="officeDrinks"]:checked');
+      const officeDrinksError = document.getElementById('officeDrinksError');
+      if (!officeDrinks) {
+        officeDrinksError.style.display = 'block';
+        valid = false;
+      } else {
+        officeDrinksError.style.display = 'none';
+      }
+
+      // Validate 5pm drinks
+      const drinks5pm = form.querySelector('input[name="drinks5pm"]:checked');
+      const drinks5pmError = document.getElementById('drinks5pmError');
+      if (!drinks5pm) {
+        drinks5pmError.style.display = 'block';
+        valid = false;
+      } else {
+        drinks5pmError.style.display = 'none';
+      }
+
+      if (!valid) return;
+
+      // Submit to Formspree
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
+
+</body>
+</html>
