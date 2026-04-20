@@ -26,7 +26,7 @@
       content: '';
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.15);
       z-index: 0;
     }
 
@@ -297,8 +297,9 @@
       </div>
 
       <div class="form-group">
-        <label class="question" for="comments">Any comments?</label>
+        <label class="question" for="comments">Any comments? <span id="commentsRequired" style="color:#dc2626;display:none;">*</span></label>
         <textarea id="comments" name="comments" placeholder="Queries or anything else..."></textarea>
+        <div class="error-msg" id="commentsError">Please add a comment explaining your answer.</div>
       </div>
 
       <button type="submit">Submit</button>
@@ -320,6 +321,19 @@
 
   <script>
     const form = document.getElementById('attendanceForm');
+
+    function updateCommentsIndicator() {
+      const od = form.querySelector('input[name="officeDrinks"]:checked');
+      const d5 = form.querySelector('input[name="drinks5pm"]:checked');
+      const needed =
+        (od && od.value === 'no') ||
+        (d5 && (d5.value === 'no' || d5.value === 'not sure yet'));
+      document.getElementById('commentsRequired').style.display = needed ? 'inline' : 'none';
+    }
+
+    form.querySelectorAll('input[type="radio"]').forEach(r =>
+      r.addEventListener('change', updateCommentsIndicator)
+    );
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
@@ -351,6 +365,19 @@
         valid = false;
       } else {
         drinks5pmError.style.display = 'none';
+      }
+
+      // Comments required if any answer is "no" or "not sure yet"
+      const commentsRequired =
+        (officeDrinks && (officeDrinks.value === 'no')) ||
+        (drinks5pm && (drinks5pm.value === 'no' || drinks5pm.value === 'not sure yet'));
+      const comments = document.getElementById('comments').value.trim();
+      const commentsError = document.getElementById('commentsError');
+      if (commentsRequired && !comments) {
+        commentsError.style.display = 'block';
+        valid = false;
+      } else {
+        commentsError.style.display = 'none';
       }
 
       if (!valid) return;
