@@ -13,19 +13,30 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
+      background: url('background 2.png') center center / cover no-repeat fixed;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 0;
     }
 
     .card {
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-      padding: 48px 40px;
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 16px;
+      box-shadow: 0 8px 48px rgba(0, 0, 0, 0.28);
+      padding: 48px 44px;
       width: 100%;
       max-width: 520px;
     }
@@ -35,38 +46,44 @@
       margin-bottom: 40px;
     }
 
-    .header .emoji {
-      font-size: 48px;
-      margin-bottom: 12px;
+    .logo {
+      width: 160px;
+      height: auto;
+      margin-bottom: 24px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .header h1 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
-      color: #1a202c;
+      color: #111827;
       margin-bottom: 6px;
+      letter-spacing: -0.3px;
     }
 
     .header p {
-      color: #718096;
-      font-size: 15px;
+      color: #6b7280;
+      font-size: 14px;
     }
 
     .form-group {
-      margin-bottom: 28px;
+      margin-bottom: 26px;
     }
 
     label.question {
       display: block;
       font-weight: 600;
-      color: #2d3748;
-      font-size: 15px;
-      margin-bottom: 12px;
+      color: #111827;
+      font-size: 14px;
+      margin-bottom: 10px;
+      letter-spacing: 0.1px;
     }
 
     .options {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
@@ -78,143 +95,153 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 10px 20px;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
+      padding: 9px 18px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 6px;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 500;
-      color: #4a5568;
+      color: #374151;
       transition: all 0.15s ease;
       user-select: none;
-      background: #f7fafc;
+      background: #f9fafb;
     }
 
     .options label:hover {
-      border-color: #667eea;
-      color: #667eea;
-      background: #ebf4ff;
+      border-color: #4f46e5;
+      color: #4f46e5;
+      background: #eef2ff;
     }
 
     .options input[type="radio"]:checked + label {
-      border-color: #667eea;
-      background: #667eea;
+      border-color: #4f46e5;
+      background: #4f46e5;
       color: #ffffff;
     }
 
-    .options input[type="radio"]:checked + label .dot {
-      background: #ffffff;
-    }
-
     .dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
-      border: 2px solid currentColor;
+      border: 1.5px solid currentColor;
       flex-shrink: 0;
     }
 
     textarea {
       width: 100%;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 12px 14px;
-      font-size: 14px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 6px;
+      padding: 11px 13px;
+      font-size: 13.5px;
       font-family: inherit;
-      color: #2d3748;
+      color: #111827;
       resize: vertical;
-      min-height: 100px;
+      min-height: 96px;
       transition: border-color 0.15s ease;
-      background: #f7fafc;
+      background: #f9fafb;
     }
 
     textarea:focus {
       outline: none;
-      border-color: #667eea;
+      border-color: #4f46e5;
       background: #ffffff;
     }
 
     textarea::placeholder {
-      color: #a0aec0;
+      color: #9ca3af;
     }
 
     .name-input {
       width: 100%;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 12px 14px;
-      font-size: 14px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 6px;
+      padding: 11px 13px;
+      font-size: 13.5px;
       font-family: inherit;
-      color: #2d3748;
+      color: #111827;
       transition: border-color 0.15s ease;
-      background: #f7fafc;
+      background: #f9fafb;
     }
 
     .name-input:focus {
       outline: none;
-      border-color: #667eea;
+      border-color: #4f46e5;
       background: #ffffff;
     }
 
     .name-input::placeholder {
-      color: #a0aec0;
+      color: #9ca3af;
     }
 
     .divider {
       border: none;
-      border-top: 1px solid #e2e8f0;
-      margin: 32px 0;
+      border-top: 1px solid #e5e7eb;
+      margin: 28px 0;
     }
 
     button[type="submit"] {
       width: 100%;
-      padding: 14px;
-      background: #667eea;
+      padding: 13px;
+      background: #4f46e5;
       color: #ffffff;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
+      border-radius: 6px;
+      font-size: 15px;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.15s ease, transform 0.1s ease;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
 
-    button[type="submit"]:hover {
-      background: #5a67d8;
+    button[type="submit"]:hover:not(:disabled) {
+      background: #4338ca;
     }
 
-    button[type="submit"]:active {
+    button[type="submit"]:active:not(:disabled) {
       transform: scale(0.98);
     }
 
-    .success {
-      display: none;
-      text-align: center;
-      padding: 32px 0 8px;
-    }
-
-    .success .checkmark {
-      font-size: 56px;
-      margin-bottom: 16px;
-    }
-
-    .success h2 {
-      font-size: 22px;
-      color: #2d3748;
-      margin-bottom: 8px;
-    }
-
-    .success p {
-      color: #718096;
-      font-size: 15px;
+    button[type="submit"]:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
     }
 
     .error-msg {
-      font-size: 13px;
-      color: #e53e3e;
-      margin-top: 8px;
+      font-size: 12.5px;
+      color: #dc2626;
+      margin-top: 7px;
       display: none;
+    }
+
+    /* Success state */
+    .success {
+      display: none;
+      text-align: center;
+      padding: 16px 0 8px;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 20px;
+    }
+
+    .success-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .success h2 {
+      font-size: 21px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .success p {
+      color: #6b7280;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -222,7 +249,7 @@
 
   <div class="card">
     <div class="header">
-      <div class="emoji">🎉</div>
+      <img src="logo-colour.png" alt="Logo" class="logo">
       <h1>Staff Party Attendance</h1>
       <p>Let us know if you can make it!</p>
     </div>
@@ -231,7 +258,7 @@
 
       <div class="form-group">
         <label class="question" for="name">Your Name</label>
-        <input class="name-input" type="text" id="name" name="name" placeholder="Enter your full name" required>
+        <input class="name-input" type="text" id="name" name="name" placeholder="Enter your full name">
         <div class="error-msg" id="nameError">Please enter your name.</div>
       </div>
 
@@ -270,12 +297,19 @@
       </div>
 
       <button type="submit">Submit</button>
+
     </form>
 
     <div class="success" id="successMsg">
-      <div class="checkmark">✅</div>
+      <img src="logo-colour.png" alt="Logo" class="logo" style="margin-bottom: 28px;">
+      <div class="success-icon">
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="36" cy="36" r="35" stroke="#16a34a" stroke-width="2" fill="#f0fdf4"/>
+          <path d="M20 36.5L30.5 47L52 26" stroke="#16a34a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
       <h2>Thanks for responding!</h2>
-      <p>Your attendance has been recorded. See you there!</p>
+      <p>Your attendance has been recorded.<br>See you there!</p>
     </div>
   </div>
 
@@ -287,7 +321,6 @@
 
       let valid = true;
 
-      // Validate name
       const name = document.getElementById('name').value.trim();
       const nameError = document.getElementById('nameError');
       if (!name) {
@@ -297,7 +330,6 @@
         nameError.style.display = 'none';
       }
 
-      // Validate office drinks
       const officeDrinks = form.querySelector('input[name="officeDrinks"]:checked');
       const officeDrinksError = document.getElementById('officeDrinksError');
       if (!officeDrinks) {
@@ -307,7 +339,6 @@
         officeDrinksError.style.display = 'none';
       }
 
-      // Validate 5pm drinks
       const drinks5pm = form.querySelector('input[name="drinks5pm"]:checked');
       const drinks5pmError = document.getElementById('drinks5pmError');
       if (!drinks5pm) {
@@ -319,7 +350,6 @@
 
       if (!valid) return;
 
-      // Submit to Formspree
       const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
