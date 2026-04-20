@@ -18,7 +18,7 @@
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: url('background%202.png') center center / cover no-repeat fixed;
+      background: url('https://raw.githubusercontent.com/amyekore/staff-party/main/Background%202.png') center center / cover no-repeat fixed;
       position: relative;
     }
 
@@ -249,7 +249,7 @@
 
   <div class="card">
     <div class="header">
-      <img src="logo-colour.png" alt="Logo" class="logo">
+      <img src="https://raw.githubusercontent.com/amyekore/staff-party/main/logo-colour.png" alt="Logo" class="logo">
       <h1>Staff Party Attendance</h1>
       <p>Let us know if you can make it!</p>
     </div>
@@ -292,8 +292,13 @@
       </div>
 
       <div class="form-group">
+        <label class="question" for="dietary">Dietary Requirements</label>
+        <textarea id="dietary" name="dietary" placeholder="Let us know of any dietary requirements..."></textarea>
+      </div>
+
+      <div class="form-group">
         <label class="question" for="comments">Any comments?</label>
-        <textarea id="comments" name="comments" placeholder="Dietary requirements, queries, or anything else..."></textarea>
+        <textarea id="comments" name="comments" placeholder="Queries or anything else..."></textarea>
       </div>
 
       <button type="submit">Submit</button>
@@ -301,7 +306,7 @@
     </form>
 
     <div class="success" id="successMsg">
-      <img src="logo-colour.png" alt="Logo" class="logo" style="margin-bottom: 28px;">
+      <img src="https://raw.githubusercontent.com/amyekore/staff-party/main/logo-colour.png" alt="Logo" class="logo" style="margin-bottom: 28px;">
       <div class="success-icon">
         <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="36" cy="36" r="35" stroke="#16a34a" stroke-width="2" fill="#f0fdf4"/>
